@@ -1,49 +1,77 @@
 public class Radio {
-    public int currentVolume;
+    private int currentVolume;
+
+    private int numberStation;
+
 
     public int getCurrentVolume() {
         return currentVolume;
     }
 
 
-    public int numberStation;
-
     public int getNumberStation() {
         return numberStation;
     }
 
-    public void setIncreaseVolume(int newCurrentVolume) {
-        if (newCurrentVolume < 100) {
-            newCurrentVolume = newCurrentVolume + 1;
-        }
+    public void setCurrentVolume(int newCurrentVolume) {
         if (newCurrentVolume > 100) {
-            newCurrentVolume = 100;
+            return;
         }
-        currentVolume = newCurrentVolume;
-
-    }
-
-    public void setDecreaseVolume(int newCurrentVolume) {
-
         if (newCurrentVolume < 0) {
-            newCurrentVolume = 0;
+            return;
         }
         currentVolume = newCurrentVolume;
+
     }
 
     public void setNumberStation(int newNumberStation) {
-        if ((newNumberStation < 9) && (newNumberStation > 0)) {
-            newNumberStation = newNumberStation + 1;
-        }
         if (newNumberStation > 9) {
-            newNumberStation = 0;
+            return;
         }
         if (newNumberStation < 0) {
-            newNumberStation = 9;
+            return;
+        }
+        numberStation = newNumberStation;
+    }
+
+    public void switchStationUp() {
+        if (numberStation == 9) {
+            numberStation = 0;
+        } else {
+            numberStation = numberStation + 1;
         }
 
-        numberStation = newNumberStation;
+    }
+
+    public void switchStationDown() {
+        if (numberStation == 0) {
+            numberStation = 9;
+        } else {
+            numberStation = numberStation - 1;
+        }
+
+
+    }
+
+
+    public void increaseVolume() {
+        if (currentVolume < 100) {
+            currentVolume = currentVolume + 1;
+        }
+
+
+    }
+
+    public void decreaseVolume() {
+        if (currentVolume > 0) {
+            currentVolume = currentVolume - 1;
+
+
+        }
     }
 
 
 }
+
+
+

@@ -3,9 +3,10 @@ import org.junit.jupiter.api.Test;
 
 public class RadioTest {
     @Test
-    public void volumeAboveMax() {
+    public void plusVolume() {
         Radio rad = new Radio();
-        rad.setIncreaseVolume(101);
+        rad.setCurrentVolume(100);
+        rad.increaseVolume();
         int expected = 100;
         int actual = rad.getCurrentVolume();
 
@@ -15,9 +16,10 @@ public class RadioTest {
     }
 
     @Test
-    public void volumeAboveMin() {
+    public void minusVolume() {
         Radio rad = new Radio();
-        rad.setDecreaseVolume(-1);
+        rad.setCurrentVolume(0);
+        rad.decreaseVolume();
         int expected = 0;
         int actual = rad.getCurrentVolume();
 
@@ -27,11 +29,12 @@ public class RadioTest {
     }
 
     @Test
-    public void plusVolume() {
+    public void minusStation() {
         Radio rad = new Radio();
-        rad.setIncreaseVolume(20);
-        int expected = 21;
-        int actual = rad.getCurrentVolume();
+        rad.setNumberStation(0);
+        rad.switchStationDown();
+        int expected = 9;
+        int actual = rad.getNumberStation();
 
         Assertions.assertEquals(expected, actual);
 
@@ -39,9 +42,10 @@ public class RadioTest {
     }
 
     @Test
-    public void stationAboveMax() {
+    public void plusStation() {
         Radio rad = new Radio();
-        rad.setNumberStation(10);
+        rad.setNumberStation(9);
+        rad.switchStationUp();
         int expected = 0;
         int actual = rad.getNumberStation();
 
@@ -50,27 +54,4 @@ public class RadioTest {
 
     }
 
-    @Test
-    public void stationAboveMin() {
-        Radio rad = new Radio();
-        rad.setNumberStation(-1);
-        int expected = 9;
-        int actual = rad.getNumberStation();
-
-        Assertions.assertEquals(expected, actual);
-
-
-    }
-
-    @Test
-    public void stationPlus() {
-        Radio rad = new Radio();
-        rad.setNumberStation(8);
-        int expected = 9;
-        int actual = rad.getNumberStation();
-
-        Assertions.assertEquals(expected, actual);
-
-
-    }
 }
